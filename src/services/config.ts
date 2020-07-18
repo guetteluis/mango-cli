@@ -1,7 +1,6 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'fs-extra';
 
 const configFile = path.join(os.homedir(), '.mango-cli', 'config.json');
 
@@ -43,15 +42,15 @@ class Config {
 
 		const data = JSON.stringify(this.data);
 
-		fs.writeFileSync(configFile, data, { encoding: 'utf-8' });
+		writeFileSync(configFile, data, { encoding: 'utf-8' });
 	}
 
 	protected createFile() {
-		fs.mkdirSync(path.dirname(configFile));
+		mkdirSync(path.dirname(configFile));
 	}
 
 	protected fileExists(): boolean {
-		return fs.existsSync(path.dirname(configFile));
+		return existsSync(path.dirname(configFile));
 	}
 }
 

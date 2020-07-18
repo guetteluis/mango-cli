@@ -1,7 +1,7 @@
 {
   "name": "mango-cli",
   "description": "Mango Automation CLI",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Luis Güette @guetteluis",
   "bin": {
     "mango": "./bin/run"
@@ -11,7 +11,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
-    "@types/fs-extra": "^9.0.1",
+    "@types/fs-extra": "8.1.0",
     "chalk": "^4.1.0",
     "cli-ux": "^5.4.9",
     "fs-extra": "^9.0.1",

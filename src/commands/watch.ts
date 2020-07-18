@@ -1,5 +1,5 @@
 import { Command, flags } from '@oclif/command';
-import { copySync, ensureDir, ensureDirSync, watch } from 'fs-extra';
+import { copySync, ensureDirSync, watch } from 'fs-extra';
 import * as chalk from 'chalk';
 import config from '../services/config';
 import { cli } from 'cli-ux';
