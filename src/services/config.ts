@@ -1,10 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
-import * as util from 'util';
+import { readFileSync } from 'fs';
 
 const configFile = path.join(os.homedir(), '.mango-cli', 'config.json');
-const readFile = util.promisify(fs.readFile);
 
 interface ConfigData {
 	localFilestorePath?: string;
@@ -15,26 +14,28 @@ class Config {
 		localFilestorePath: undefined,
 	};
 
-	async addLocalFileStore(path: string) {
-		await this.readConfigData();
+	addLocalFileStore(path: string) {
+		this.readConfigData();
 
 		this.data.localFilestorePath = path;
 
 		this.saveFile();
 	}
 
-	async readConfigData() {
+	getLocalFileStorePath(): string | undefined {
+		this.readConfigData();
+
+		return this.data.localFilestorePath;
+	}
+
+	readConfigData() {
 		if (!this.fileExists()) {
 			this.createFile();
 			this.saveFile();
 		}
 
-		try {
-			const data = await readFile(configFile, 'utf-8');
-			this.data = JSON.parse(data);
-		} catch (e) {
-			throw new Error(e);
-		}
+		const data = readFileSync(configFile, 'utf-8');
+		this.data = JSON.parse(data);
 	}
 
 	protected saveFile() {

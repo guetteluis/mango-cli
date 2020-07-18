@@ -26,11 +26,8 @@ Local filestore location added
 	async run() {
 		const { args } = this.parse(LocalFilestore);
 
-		try {
-			await config.addLocalFileStore(args.path);
-			this.log(`${chalk.green('[Success]')} Added a local filestore directory path`);
-		} catch (e) {
-			this.error(chalk.red('The filestore directory path could not be saved'));
-		}
+		config.addLocalFileStore(args.path);
+
+		this.log(`${chalk.green('[Success]')} Added a local filestore directory path`);
 	}
 }
