@@ -54,7 +54,10 @@
     "bin": "mango",
     "plugins": [
       "@oclif/plugin-help"
-    ]
+    ],
+    "macos": {
+      "identifier": "com.mango.cli"
+    }
   },
   "repository": "guetteluis/mango-cli",
   "scripts": {
